@@ -11,6 +11,10 @@ public class Jugador
     private String nombre;
     // array que almacena las cartas que tiene el jugador
     private Carta[] cartasJugador;
+    
+    private int numeroCartasEnLaMano;
+    
+    
     /**
      * Constructor for objects of class Jugador
      */
@@ -18,18 +22,14 @@ public class Jugador
     {
         this.nombre = nombre;
         cartasJugador = new Carta[5];
+        numeroCartasEnLaMano = 0;
     }
     
     public void recibirCarta(Carta cartaARecibir)
     {
-        boolean buscando = true;
-        int i = 0;
-        while (i < cartasJugador.length && buscando){
-            if (cartasJugador[i] == null){
-                cartasJugador[i] = cartaARecibir;
-                buscando = false;
-            }
-            i++;
+        if (numeroCartasEnLaMano < 5){
+            cartasJugador[numeroCartasEnLaMano] = cartaARecibir;
+            numeroCartasEnLaMano++;
         }
     }
     
@@ -40,6 +40,11 @@ public class Jugador
                 System.out.println(cartasJugador[i]);
             }
         }
+    }
+    
+    public String verNombreJugador()
+    {
+        return nombre;
     }
     
 }
