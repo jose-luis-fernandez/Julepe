@@ -17,76 +17,80 @@ public class Juego
     // Atributo que guarda el palo que pinta, que es la ultima carta repartida
     private int paloQuePinta;
 
+    private Jugador jugadorHumano;
+
     /**
      * Constructor for objects of class Juego
      */
-    public Juego(int numeroJugadores)
+    public Juego(int numeroJugadores, String nombreJugadorHumano)
     {
         // initialise instance variables
-       mazo = new Mazo();
-       jugadores = new Jugador[numeroJugadores];
-       Random aleatorio = new Random();
-       for (int i = 0;i < numeroJugadores;i++){
-           int x = aleatorio.nextInt(10);
-           if (nombresJugadores[x] != null){
-               jugadores[i] = new Jugador(nombresJugadores[x]);
-               nombresJugadores[x] = null;
-           }
-           else{
-               i--;
-           } 
+        mazo = new Mazo();
+        jugadores = new Jugador[numeroJugadores];
+        jugadorHumano = new Jugador(nombreJugadorHumano);
+        jugadores[0] = jugadorHumano;
+        Random aleatorio = new Random();
+        System.out.println("Bienvenido a esta partida de julepe, " + jugadores[0].verNombreJugador());
+        System.out.println("Tus rivales son:");
+        for (int i = 1;i < numeroJugadores;i++){
+            int x = aleatorio.nextInt(10);
+            if (nombresJugadores[x] != null){
+                jugadores[i] = new Jugador(nombresJugadores[x]);
+                nombresJugadores[x] = null;
+            }
+            else{
+                i--;
+            }
+            System.out.println(jugadores[i].verNombreJugador());
         }
     }
-    
-    public void repartir()
+
+    public int repartir()
     {
         mazo.barajar();
         int i = 0;
-        Carta cartaQuePinta = null;
+        Carta nuevaCarta = null;
         while (i < 5){
             int j = 0;
             while (j < jugadores.length){
-                
-                if (i == 4 && j == (jugadores.length - 1)){
-                    cartaQuePinta = mazo.sacarCarta();
-                    jugadores[j].recibirCarta(cartaQuePinta);
-                }
-                else{
-                    jugadores[j].recibirCarta(mazo.sacarCarta());
-                }
+                nuevaCarta = mazo.sacarCarta();
+                jugadores[j].recibirCarta(nuevaCarta);
                 j++;
             }
             i++;
         }
-        paloQuePinta = cartaQuePinta.getPalo();
+        paloQuePinta = nuevaCarta.getPalo();
+        String textoPalo = "";
+        switch (paloQuePinta){
+            case 0: textoPalo = "Pintan oros";break;
+            case 1: textoPalo = "Pintan copas";break;
+            case 2: textoPalo = "Pintan espadas";break;
+            case 3: textoPalo = "Pintan bastos";break;
+        }
+        System.out.println(textoPalo);
+        System.out.println("#### Cartas De: " + jugadores[0].verNombreJugador() + " ####");
+        jugadores[0].verCartasJugador();
+        return paloQuePinta;
     }
-    
-    public void verCartasJugador(String nombreJugador)
+
+    public void hacerTrampasYVerCartasDeJugador(String nombreJugador)
     {
-        for (int i = 0;i < jugadores.length;i++){
+        boolean buscando = true;
+        int i = 0;
+        while (i < jugadores.length && buscando){
             if (jugadores[i].verNombreJugador().equals(nombreJugador)){
                 jugadores[i].verCartasJugador();
+                buscando = false;
             }
+            i++;
         }
-        
-        
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+    public void verCartasJugadorHumano()
+    {
+        jugadores[0].verCartasJugador();
+    }
+
     
     
     

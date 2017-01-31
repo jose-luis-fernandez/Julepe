@@ -62,6 +62,39 @@ public class Carta
         return palo;
     }
     
+    public boolean ganaA(Carta cartaAcomparar, int paloQuePinta){
+        boolean gana = false;
+        if (palo == paloQuePinta){
+            if (palo == paloQuePinta && cartaAcomparar.getPalo() != paloQuePinta){
+                gana = true;
+            }
+            else if ( valor == 1){
+                gana = true;
+            }
+            else if (valor == 3 && cartaAcomparar.getValor() != 1 && cartaAcomparar.getPalo() == paloQuePinta){
+                gana = true;
+            }
+            else if (valor > cartaAcomparar.getValor() && cartaAcomparar.getValor() != 1 && cartaAcomparar.getValor() != 3){
+                gana = true;
+            }
+        }
+        else {
+            if (palo != cartaAcomparar.getPalo() && cartaAcomparar.getPalo() != paloQuePinta){
+                gana = true;
+            }
+            else if (valor == 1 && cartaAcomparar.getPalo() != paloQuePinta){
+                gana = true;
+            }
+            else if (valor == 3 && cartaAcomparar.getValor() != 1 && cartaAcomparar.getPalo() != paloQuePinta){
+                gana = true;
+            }
+            else if (cartaAcomparar.getPalo() != paloQuePinta &&valor > cartaAcomparar.getValor() && cartaAcomparar.getValor() != 1 && cartaAcomparar.getValor() != 3){
+                gana = true;
+            }
+        }
+        return gana;
+    }
+    
     
 
 }
