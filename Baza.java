@@ -1,4 +1,4 @@
-
+import java.util.ArrayList;
 /**
  * Write a description of class Baza here.
  * 
@@ -12,7 +12,7 @@ public class Baza
     
     private int paloQuePinta;
     
-    
+    private ArrayList<Carta> baza;
     
     /**
      * Constructor for objects of class Baza
@@ -22,6 +22,7 @@ public class Baza
         // initialise instance variables
         jugadores = numeroJugadoresQueTiranCarta;
         this.paloQuePinta = paloQuePinta;
+        baza = new ArrayList<Carta>();
     }
 
     
