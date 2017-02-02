@@ -62,7 +62,8 @@ public class Carta
         return palo;
     }
     
-    public boolean ganaA(Carta cartaAcomparar, int paloQuePinta){
+    public boolean ganaA(Carta cartaAcomparar, int paloQuePinta)
+    {
         boolean gana = false;
         if (palo == paloQuePinta){
             if (palo == paloQuePinta && cartaAcomparar.getPalo() != paloQuePinta){
@@ -88,13 +89,41 @@ public class Carta
             else if (valor == 3 && cartaAcomparar.getValor() != 1 && cartaAcomparar.getPalo() != paloQuePinta){
                 gana = true;
             }
-            else if (cartaAcomparar.getPalo() != paloQuePinta &&valor > cartaAcomparar.getValor() && cartaAcomparar.getValor() != 1 && cartaAcomparar.getValor() != 3){
+            else if (cartaAcomparar.getPalo() != paloQuePinta && valor > cartaAcomparar.getValor() && cartaAcomparar.getValor() != 1 && cartaAcomparar.getValor() != 3){
                 gana = true;
             }
         }
         return gana;
     }
     
+    public boolean ganaA2(Carta cartaAcomparar, int paloQuePinta)
+    {
+        boolean gana = false;
+        
+        if (palo == cartaAcomparar.getPalo()){
+            if (getPosicionEscalaTute() > cartaAcomparar.getPosicionEscalaTute()){
+                gana = true;
+            }
+        }
+        else{
+            if (cartaAcomparar.getPalo() != paloQuePinta){
+                gana = true;
+            }
+        }
+        return gana;
+    }
     
+    public int getPosicionEscalaTute()
+    {
+        int posicion = valor;
+        
+        if (valor == 3){
+            posicion = 13;
+        }
+        else if (valor == 1){
+            posicion = 13;
+        }
+        return posicion;
+    }
 
 }
