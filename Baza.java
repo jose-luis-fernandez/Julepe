@@ -38,6 +38,34 @@ public class Baza
         }
         return paloPrimeraCarta;
     }
+    
+    public Carta cartaQueVaGanandoLaBaza()
+    {
+        Carta cartaADevolver = null;
+        if (baza.size() > 0){
+            for (int i = 0; i < (baza.size()) - 1; i++){
+                if (baza.get(i).ganaA2(baza.get(i + 1), this.paloQuePinta)){
+                    cartaADevolver = baza.get(i);
+                }
+                else {
+                    cartaADevolver = baza.get(i + 1);
+                }
+            }
+        }
+        return cartaADevolver;
+    }
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 }
