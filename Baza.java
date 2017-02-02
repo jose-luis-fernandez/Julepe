@@ -24,6 +24,20 @@ public class Baza
         this.paloQuePinta = paloQuePinta;
         baza = new ArrayList<Carta>();
     }
+    
+    public void addCarta(Carta cartaTirada, String nombreJugadorQueTira)
+    {
+        baza.add(cartaTirada);
+    }
+    
+    public int getPaloPrimeraCartaDeLaBaza()
+    {
+        int paloPrimeraCarta = -1;
+        if (baza.size() > 0){
+            paloPrimeraCarta = baza.get(0).getPalo();
+        }
+        return paloPrimeraCarta;
+    }
 
     
 }
